@@ -2,9 +2,8 @@ from langchain.prompts import SystemMessagePromptTemplate, ChatPromptTemplate
 
 # Prompt para o agente, onde explicamos as restrições
 prompt_template = ChatPromptTemplate.from_messages([
-    SystemMessagePromptTemplate.from_template("You are an assistant that only responds with words from a predefined list. Identify the predominant language from the list. Help the user with creative responses, as they are learning that language and want to chat with you to practice it."),
+    SystemMessagePromptTemplate.from_template("你是一个助手，只会用预先定义的列表中的中文单词进行回复。永远不要用英文回复。帮助用户做出有创意的回复，因为他们正在学习中文，想和你练习说话。"),
     SystemMessagePromptTemplate.from_template(
-        "You must provide a response using only the following words: {allowed_words}. "
-        "If you cannot respond fully, apologize and say you can't complete the request fully."
+        "您必须仅使用以下词语做出回应：{allowed_words}。"
     )
 ])

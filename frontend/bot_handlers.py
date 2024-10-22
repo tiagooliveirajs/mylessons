@@ -3,13 +3,11 @@ from telegram.ext import CallbackContext
 from backend.lm_studio_llm import LMStudioLLM
 from backend.prompt import prompt_template
 from backend.validator import is_valid_response
+from backend.db import fetch_all_words  # Importa a função para buscar as palavras permitidas do banco
 from langchain import LLMChain
 
-# Load words from words.json for validation
-import json
-with open('backend/words.json', 'r') as f:
-    data = json.load(f)
-allowed_words = set(data['words'])
+# Carregar as palavras permitidas do banco de dados
+allowed_words = set(fetch_all_words())
 
 # Função chamada quando o comando /start é recebido
 async def start(update: Update, context: CallbackContext) -> None:
@@ -30,8 +28,8 @@ async def handle_message(update: Update, context: CallbackContext) -> None:
             "input": user_input
         })
 
-        # Verificar se a resposta é válida
-        if is_valid_response(agent_response, allowed_words):
+        # Verificar se a resposta é válida usando as palavras do banco de dados
+        if is_valid_response(agent_response):
             await update.message.reply_text(agent_response)
         else:
             # Se a resposta não for válida, pedir à LLM para reformular a resposta
