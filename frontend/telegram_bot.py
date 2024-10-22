@@ -8,7 +8,7 @@ load_dotenv()
 TOKEN = os.getenv("TELEGRAMBOT_TOKEN")
 
 # Função principal para configurar o bot
-def main():
+def start_bot():  # Alterado de 'main' para 'start_bot'
     # Criar a aplicação do Telegram bot
     application = Application.builder().token(TOKEN).build()
 
@@ -20,4 +20,4 @@ def main():
     application.run_polling()
 
 if __name__ == "__main__":
-    main()
+    start_bot()  # Alterado de 'main' para 'start_bot'
