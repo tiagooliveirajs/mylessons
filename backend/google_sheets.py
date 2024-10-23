@@ -1,7 +1,9 @@
+# backend/google_sheets.py
+
 import os
 import gspread
 from google.oauth2.service_account import Credentials
-from backend.db import insert_word_into_db
+from backend.words_repository import insert_word_into_db
 from dotenv import load_dotenv
 
 # Carregar variáveis de ambiente do arquivo .env

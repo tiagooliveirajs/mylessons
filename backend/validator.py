@@ -1,4 +1,6 @@
-from backend.db import fetch_all_words
+# backend/validator.py
+
+from backend.words_repository import fetch_all_words
 
 # Função para verificar se todas as palavras na resposta estão na lista de palavras permitidas no banco de dados
 def is_valid_response(response: str) -> bool:
